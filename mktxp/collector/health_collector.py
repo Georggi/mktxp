@@ -25,7 +25,7 @@ class HealthCollector(BaseCollector):
             return
 
         health_labels = ['voltage', 'temperature', 'phy_temperature', 'cpu_temperature', 'switch_temperature', 
-                        'fan1_speed', 'fan2_speed', 'fan3_speed', 'fan4_speed', 'power_consumption', ' board_temperature1', 'board_temperature2',
+                        'fan1_speed', 'fan2_speed', 'fan3_speed', 'fan4_speed', 'power_consumption', 'board_temperature1', 'board-temperature1', 'board_temperature2',
                         'psu1_voltage', 'psu2_voltage', 'psu1_current', 'psu2_current', 'psu1_state', 'psu2_state', 
                         'poe_out_consumption', 'jack_voltage', '2pin_voltage', 'poe_in_voltage']
         translation_table = {
@@ -78,7 +78,10 @@ class HealthCollector(BaseCollector):
                 if 'board_temperature1' in record:
                     board_temperature1_metrics = BaseCollector.gauge_collector('system_board_temperature1', 'System board temperature 1', [record, ], 'board_temperature1')
                     yield board_temperature1_metrics
-
+                elif 'board-temperature1' in record:
+                    board_temperature1_metrics = BaseCollector.gauge_collector('system_board_temperature1', 'System board temperature 1', [record, ], 'board-temperature1')
+                    yield board_temperature1_metrics
+                
                 if 'board_temperature2' in record:
                     board_temperature2_metrics = BaseCollector.gauge_collector('system_board_temperature2', 'System board temperature 2', [record, ], 'board_temperature2')
                     yield board_temperature2_metrics
