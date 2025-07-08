@@ -78,9 +78,6 @@ class HealthCollector(BaseCollector):
                 if 'board_temperature1' in record:
                     board_temperature1_metrics = BaseCollector.gauge_collector('system_board_temperature1', 'System board temperature 1', [record, ], 'board_temperature1')
                     yield board_temperature1_metrics
-                elif 'board-temperature1' in record:
-                    board_temperature1_metrics = BaseCollector.gauge_collector('system_board_temperature1', 'System board temperature 1', [record, ], 'board-temperature1')
-                    yield board_temperature1_metrics
                 
                 if 'board_temperature2' in record:
                     board_temperature2_metrics = BaseCollector.gauge_collector('system_board_temperature2', 'System board temperature 2', [record, ], 'board_temperature2')
